@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "640b2fcf-d9b0-4ac2-9e9e-48a25aadd676",
+		"name": "Aifer Question API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31049459"
+	},
+	"item": [
+		{
+			"name": "Get All Questions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}questions",
+					"host": [
+						"{{base_url}}questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Question",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"question\": \"What is the capital of France?\",\n  \"options\": [\"Paris\", \"Berlin\", \"Madrid\", \"Rome\"],\n  \"correctAnswer\": 0,\n  \"explanation\": \"Paris is the capital of France.\",\n  \"quizId\": \"quiz124\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}questions",
+					"host": [
+						"{{base_url}}questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Answers",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"answers\": [\n        {\n            \"quizId\": \"quiz123\",\n            \"selectedAnswer\": 0\n        },\n        {\n            \"quizId\": \"quiz124\",\n            \"selectedAnswer\": 1\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}questions/submit",
+					"host": [
+						"{{base_url}}questions"
+					],
+					"path": [
+						"submit"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api/",
+			"type": "default"
+		}
+	]
+}
