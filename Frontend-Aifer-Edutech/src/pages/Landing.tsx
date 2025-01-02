@@ -25,6 +25,30 @@ const Landing: React.FC = () => {
                         Take a Quiz
                     </button>
                 </div>
+                <div className="mt-6 text-gray-600">
+                    <p>Connect with the developer:</p>
+                    <div className="flex justify-center space-x-4 mt-2">
+                        <a
+                            href="https://www.linkedin.com/in/abhiabhishektr/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:text-blue-800 transition-colors"
+                        >
+                            LinkedIn
+                        </a>
+                        <a
+                            href="https://github.com/abhiabhishektr"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-800 hover:text-black transition-colors"
+                        >
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+                <div className="mt-8 text-gray-500">
+                    <p>Done by <span className="font-bold">Abhishek T R</span></p>
+                </div>
             </div>
         </div>
     );

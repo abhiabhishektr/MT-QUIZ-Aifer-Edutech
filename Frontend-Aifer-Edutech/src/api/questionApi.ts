@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL =
     import.meta.env.VITE_MODE === "development"
         ? "http://localhost:3000/api/questions"
-        : "https://projects.abhishektr.in/aifer/api";
+        : "https://projects.abhishektr.in/Aifer/api/questions";
 
 // Get all questions
 export const getAllQuestions = async () => {

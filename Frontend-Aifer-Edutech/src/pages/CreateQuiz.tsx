@@ -153,7 +153,7 @@ const CreateQuiz = () => {
                             {loading ? 'Adding Question...' : 'Add Question'}
                         </button>
                         <button
-                            onClick={() => navigate('/quiz')}
+                            onClick={() => navigate('/take-quiz')}
                             className="mb-4 w-full px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
                         >
                             Go to Quiz Page

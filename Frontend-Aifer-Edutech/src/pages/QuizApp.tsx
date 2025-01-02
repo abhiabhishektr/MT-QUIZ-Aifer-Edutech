@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { questions as sampleQuestions } from '../constants/sampleQuestions'; 
 import { getAllQuestions } from '../api/questionApi';
+import Spinner from './Spinner';
 
 
 export interface Question {
@@ -128,7 +129,7 @@ const QuizApp = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Spinner />;
     }
 
     if (error) {
