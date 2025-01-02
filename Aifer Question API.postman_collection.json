@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "640b2fcf-d9b0-4ac2-9e9e-48a25aadd676",
 		"name": "Aifer Question API",
+		"description": "Postman collection for Aifer Backend API  \nNote\n\n1. there are backend validation for every routes so use the repected querys , params ,body variables as mentioned in the documentation while checking for better results .\n    \n2. The live link : [https://projects.abhishektr.in/Aifer/api](https://projects.abhishektr.in/autonomize/api)  \n    Local link : [http://localhost:3000/api](http://localhost:3000/api)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "31049459"
 	},
