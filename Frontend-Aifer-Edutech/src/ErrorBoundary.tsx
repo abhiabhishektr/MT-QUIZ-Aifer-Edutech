@@ -1,59 +1,55 @@
-// ErrorBoundary.tsx
-import React, { ErrorInfo } from "react";
+import  { Component, ReactNode } from 'react';
 
 interface ErrorBoundaryProps {
-  children: React.ReactNode;
+    children: ReactNode;
 }
 
 interface ErrorBoundaryState {
-  hasError: boolean;
-  error: Error | null;
-  errorInfo: ErrorInfo | null;
+    hasError: boolean;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = {
-      hasError: false,
-      error: null,
-      errorInfo: null,
-    };
-  }
-
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    // Update state to indicate an error has occurred
-    return {
-      hasError: true,
-      error,
-      errorInfo: null,
-    };
-  }
-
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    // You can log the error to an error reporting service
-    console.error("Error caught by ErrorBoundary:", error, errorInfo);
-    this.setState({
-      errorInfo,
-    });
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // Fallback UI when there is an error
-      return (
-        <div>
-          <h2>Something went wrong. Please try again later.</h2>
-          <details>
-            {this.state.error && <summary>{this.state.error.message}</summary>}
-            {this.state.errorInfo && <pre>{this.state.errorInfo.componentStack}</pre>}
-          </details>
-        </div>
-      );
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+    constructor(props: ErrorBoundaryProps) {
+        super(props);
+        this.state = { hasError: false };
     }
 
-    return this.props.children;
-  }
+    static getDerivedStateFromError(): ErrorBoundaryState {
+        return { hasError: true };
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return (
+                <div className="min-h-screen flex items-center justify-center bg-gray-100">
+                    <div className="text-center bg-white p-6 rounded-md shadow-md">
+                        <h1 className="text-2xl font-bold text-red-500 mb-4">Oops! Something went wrong.</h1>
+                        <p className="text-gray-700 mb-4">Please contact the developer for assistance.</p>
+                        <div className="flex justify-center space-x-4">
+                            <a
+                                href="https://github.com/abhiabhishektr"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 underline"
+                            >
+                                GitHub
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/abhiabhishektr/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 underline"
+                            >
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        return this.props.children;
+    }
 }
 
 export default ErrorBoundary;

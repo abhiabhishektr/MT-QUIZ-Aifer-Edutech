@@ -6,7 +6,7 @@ import sendResponse from '../utils/response';
 // Get all questions
 export const getAllQuestions = async (req: Request, res: Response): Promise<void> => {
     try {
-        const questions = await Question.find().select('-correctAnswer -_id -__v');
+        const questions = await Question.find().select(' -_id -__v');
         sendResponse(res, 200, 'Retrieved all questions successfully', questions);
     } catch (err) {
         console.error('Error fetching questions: ', err);

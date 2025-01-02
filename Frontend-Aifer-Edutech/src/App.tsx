@@ -1,18 +1,21 @@
-import React from "react";
-import { GitHubProvider } from "./context/GitHubContext";
-import InputBox from "./components/InputBox/InputBox";
-import './App.css';
-import ErrorBoundary from "./ErrorBoundary";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ErrorBoundary from './ErrorBoundary';
+import Landing from './pages/Landing';
+import CreateQuiz from './pages/CreateQuiz';
+import QuizApp from './pages/QuizApp';
 
-const App: React.FC = () => {
-
-  return (
-    <GitHubProvider>
-      <ErrorBoundary>
-        <InputBox />
-      </ErrorBoundary>
-    </GitHubProvider>
-  );
-};
+function App() {
+    return (
+        <ErrorBoundary>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/create-question" element={<CreateQuiz />} />
+                    <Route path="/take-quiz" element={<QuizApp />} />
+                </Routes>
+            </Router>
+        </ErrorBoundary>
+    );
+}
 
 export default App;
