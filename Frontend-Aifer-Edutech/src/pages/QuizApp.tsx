@@ -14,7 +14,9 @@ export interface Question {
 
 const QuizApp = () => {
     const [questions, setQuestions] = useState<Question[]>(sampleQuestions);
+    const [object, setObject] = useState({});
     const [loading, setLoading] = useState<boolean>(true);
+    const [questionnotArray, setQuestionnotArray] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -34,11 +36,12 @@ const QuizApp = () => {
 
     const [showResults, setShowResults] = useState<boolean>(false);  
 
+
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const data = await getAllQuestions();
-        setQuestions(data);
+        setObject(data);
       } catch (err) {
         setError('Error fetching questions. Please try again.');
       } finally {
@@ -48,6 +51,14 @@ const QuizApp = () => {
 
     fetchQuestions();
   }, []);
+
+  useEffect(() => {
+    if ( Array.isArray(object)) {
+        setQuestionnotArray(true);
+    } else {
+        setQuestionnotArray(false);
+    }
+    },[object])
 
     const handleOptionSelect = (questionId: string, optionIndex: number) => {
         setSelectedAnswers((prev) => ({
@@ -65,7 +76,7 @@ const QuizApp = () => {
             ...prev,
             [questionId]: !prev[questionId],
         }));
-    };
+    }; 
 
     const getOptionStyles = (questionId: string, optionIndex: number) => {
         const isSelected = selectedAnswers[questionId] === optionIndex;
@@ -86,9 +97,12 @@ const QuizApp = () => {
     const getQuestionProgressStyle = (questionId: string) => {
         const answer = selectedAnswers[questionId];
         if (answer === undefined) return 'bg-white';
-        return answer === questions.find(q => q.quizId === questionId)?.correctAnswer
-            ? 'bg-green-500 text-white'
-            : 'bg-red-500 text-white';
+        else{
+            return answer === questions[currentQuestion].correctAnswer
+                ? 'bg-blue-500 text-white'
+                : 'bg-blue-500 text-white';
+        }
+            
     };
 
     const handleSubmit = () => {
@@ -228,7 +242,8 @@ const QuizApp = () => {
                                 </div>
 
                                 <div className="grid grid-cols-5 gap-2">
-                                    {questions.map((_, index) => (
+                                    {questionnotArray? 
+                                    questions.map((_, index) => (
                                         <button
                                             key={index}
                                             onClick={() => setCurrentQuestion(index)}
@@ -237,7 +252,10 @@ const QuizApp = () => {
                                         >
                                             {index + 1}
                                         </button>
-                                    ))}
+                                    ))
+                                    :
+                                    <p>not available</p>
+                                }
                                 </div>
 
                                 <button
