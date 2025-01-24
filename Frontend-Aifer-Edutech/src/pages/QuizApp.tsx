@@ -84,7 +84,7 @@ const QuizApp = () => {
         if (!showExplanation[questionId]) {
             return isSelected ? 'bg-blue-500 text-white' : 'bg-white hover:bg-gray-50';
         }
-
+ 
         if (isSelected) {
             return optionIndex === questions[currentQuestion].correctAnswer
                 ? 'bg-green-500 text-white'
